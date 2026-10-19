@@ -1,0 +1,37 @@
+#include <stdio.h>
+
+int main(void) {
+    double kwh, rate, bill, surcharge = 0.0, total;
+
+    printf("Enter kilowatt-hours consumed: ");
+    scanf("%lf", &kwh);
+
+    if (kwh < 0) {
+        printf("Invalid consumption.\n");
+        return 1;
+    }
+
+    if (kwh <= 100)
+        rate = 8.00;
+    else if (kwh <= 200)
+        rate = 10.00;
+    else if (kwh <= 300)
+        rate = 12.00;
+    else
+        rate = 15.00;
+
+    bill = kwh * rate;
+
+    if (bill > 3000)
+        surcharge = bill * 0.05;
+
+    total = bill + surcharge;
+
+    printf("\n--- Electricity Bill ---\n");
+    printf("Consumption : %.2f kWh\n", kwh);
+    printf("Rate        : P%.2f per kWh\n", rate);
+    printf("Surcharge   : P%.2f\n", surcharge);
+    printf("Total Bill  : P%.2f\n", total);
+
+    return 0;
+}
