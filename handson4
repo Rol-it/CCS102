@@ -1,0 +1,53 @@
+#include <stdio.h>
+
+int main(void) {
+    int choice, passengerType;
+    double distance, baseFare = 0, ratePerKm = 0;
+    double extraKm, additionalFare, totalFare, discount = 0, finalFare;
+
+    printf("Transportation Menu\n");
+    printf("1 - Tricycle\n2 - Jeepney\n3 - Bus\n4 - Taxi\n");
+    printf("Choose transportation: ");
+    scanf("%d", &choice);
+
+    printf("Enter distance travelled (km): ");
+    scanf("%lf", &distance);
+
+    printf("Passenger type (1 - Student/Senior Citizen, 2 - Regular): ");
+    scanf("%d", &passengerType);
+
+    switch (choice) {
+        case 1: baseFare = 15; break;
+        case 2: baseFare = 13; break;
+        case 3: baseFare = 15; break;
+        case 4: baseFare = 50; break;
+        default:
+            printf("Invalid transportation choice.\n");
+            return 1;
+    }
+
+    switch (choice) {
+        case 1: ratePerKm = 3.00;  break;
+        case 2: ratePerKm = 2.00;  break;
+        case 3: ratePerKm = 2.50;  break;
+        case 4: ratePerKm = 15.00; break;
+    }
+
+    extraKm = (distance > 4) ? distance - 4 : 0;
+    additionalFare = extraKm * ratePerKm;
+    totalFare = baseFare + additionalFare;
+
+    if (passengerType == 1)
+        discount = totalFare * 0.20;
+
+    finalFare = totalFare - discount;
+
+    printf("\n--- Fare Summary ---\n");
+    printf("Base fare       : P%.2f\n", baseFare);
+    printf("Additional fare : P%.2f\n", additionalFare);
+    printf("Total fare      : P%.2f\n", totalFare);
+    printf("Discount        : P%.2f\n", discount);
+    printf("Fare to pay     : P%.2f\n", finalFare);
+
+    return 0;
+}
